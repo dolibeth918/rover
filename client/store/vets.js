@@ -20,7 +20,7 @@ const getVets = vets => ({type: GET_VETS, vets})
  */
 export const fetchVets = () => async dispatch => {
   try {
-    const res = await axios.get('/vets')
+    const res = await axios.get('api/vets')
     dispatch(getVets(res.data))
   } catch (err) {
     console.error(err)
