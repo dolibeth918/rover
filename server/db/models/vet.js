@@ -13,6 +13,11 @@ const Vet = db.define('vet', {
   phone: {
     type: Sequelize.STRING,
     defaultValue: '718-123-4567'
+  },
+  imgUrl: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://www.vets-now.com/app/uploads/2016/11/vets-now-professionals.jpg'
   }
 })
 
