@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import {
   Card,
@@ -49,6 +50,14 @@ class Vets extends Component {
                 />
                 <CardContent>{vet.address}</CardContent>
                 <CardContent>{vet.phone}</CardContent>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    axios.post(`/api/users/${this.props.user.id}/vets`, {vet})
+                  }}
+                >
+                  Add to My Vets
+                </Button>
               </Card>
             )
           })}
@@ -58,6 +67,7 @@ class Vets extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   vets: state.vets
 })
 

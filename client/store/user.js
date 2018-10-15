@@ -56,6 +56,12 @@ export const logout = () => async dispatch => {
   }
 }
 
+export function addVetToUser(user, vet) {
+  return dispatch => {
+    return axios.post(`/api/users/${user.id}/vets`).then(res => res.data)
+  }
+}
+
 /**
  * REDUCER
  */
