@@ -1,18 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Card, CardContent, CardActions, Button} from '@material-ui/core'
+import {withStyles} from '@material-ui/core/styles'
 
 import {fetchVets} from '../store'
 
-/**
- * COMPONENT
- */
-// export const Vets = () => {
-//   return (
-//     <div>
-//       <h3>Find a vet:</h3>
-//     </div>
-//   )
-// }
+const styles = {
+  App: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  Card: {
+    marginRight: '24px',
+    flex: '1',
+    position: 'relative'
+  }
+}
 
 class Vets extends Component {
   constructor(props) {
@@ -23,7 +26,19 @@ class Vets extends Component {
     this.props.fetchVets()
   }
   render() {
-    return <h1>all vets</h1>
+    const {vets} = this.props
+    return (
+      <div className={this.props.classes.App}>
+        {vets.length > 0 &&
+          vets.map(vet => {
+            return (
+              <Card className={this.props.classes.Card}>
+                <CardContent>{vet.name}</CardContent>
+              </Card>
+            )
+          })}
+      </div>
+    )
   }
 }
 
@@ -37,4 +52,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Vets)
+const vetsWithStyles = withStyles(styles)(Vets)
+
+export default connect(mapStateToProps, mapDispatchToProps)(vetsWithStyles)
